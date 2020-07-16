@@ -74,7 +74,7 @@ MODULE_PARM_DESC(desc_blen_max,
 #define XDMA_PERF_NUM_DESC 128
 
 /* Kernel version adaptative code */
-#if KERNEL_VERSION(4, 19, 0) <= LINUX_VERSION_CODE
+#if KERNEL_VERSION(4, 18, 0) <= LINUX_VERSION_CODE
 /* since 4.18, using simple wait queues is not recommended 
  * except for realtime constraint (see swait.h comments) 
  * and will likely be removed in future kernel versions 
@@ -715,7 +715,7 @@ static struct xdma_transfer *engine_start(struct xdma_engine *engine)
 	dbg_tfr("ioread32(0x%p) (dummy read flushes writes).\n",
 		&engine->regs->status);
 
-#if KERNEL_VERSION(5, 1, 0) >= LINUX_VERSION_CODE
+#if KERNEL_VERSION(4, 17, 0) >= LINUX_VERSION_CODE
 	mmiowb();
 #endif
 
